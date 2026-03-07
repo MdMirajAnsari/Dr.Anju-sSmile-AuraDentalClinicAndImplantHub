@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/API/" />
+  <Folder Name="/Core/">
+    <Project Path="DentalClinic.Domain/DentalClinic.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Tests/">
+    <Project Path="DentalClinic.Tests/DentalClinic.Tests.csproj" />
+  </Folder>
+</Solution>
