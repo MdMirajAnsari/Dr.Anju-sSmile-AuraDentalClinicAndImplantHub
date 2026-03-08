@@ -1,6 +1,7 @@
 ﻿using DentalClinic.Application.Contracts.Persistence;
 using DentalClinic.Application.Contracts.Repositories;
 using DentalClinic.Application.Exceptions;
+using DentalClinic.Application.Utilities;
 using DentalClinic.Domain.Entities;
 using FluentValidation;
 using System;
@@ -11,28 +12,19 @@ using System.Threading.Tasks;
 
 namespace DentalClinic.Application.Features.DentalOffices.Commands.CreateDentalOffice
 {
-    public class CreateDentalOfficeCommandHandler
+    public class CreateDentalOfficeCommandHandler : IRequestHandler<CreateDentalOfficeCommand, Guid>
     {
         private readonly IDentalOfficeRepository _dentalOfficeRepository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<CreateDentalOfficeCommand> _validator;
 
-        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository dentalOfficeRepository, IUnitOfWork unitOfWork, IValidator<CreateDentalOfficeCommand> validator)
+        public CreateDentalOfficeCommandHandler(IDentalOfficeRepository dentalOfficeRepository, IUnitOfWork unitOfWork)
         {
             _dentalOfficeRepository = dentalOfficeRepository;
             _unitOfWork = unitOfWork;
-            _validator = validator;
         }
 
         public async Task<Guid> Handle(CreateDentalOfficeCommand command)
-        {
-            var validationResult = await _validator.ValidateAsync(command);
-            if (validationResult.IsValid) 
-            {
-                await _unitOfWork.Rollback();
-                throw new CustomValidationException(validationResult);
-            }
-
+        {      
             var dentalOffice = new DentalOffice(command.Name);
 
             try
