@@ -27,13 +27,7 @@ namespace DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOffic
                 throw new NotFoundException();
             }
 
-            var dto = new DentalOfficeDetailDTO
-            {
-                Id = dentalOffice.Id,
-                Name = dentalOffice.Name
-            };
-
-            return dto;
+           return dentalOffice.ToDTO();
         }
     }
 }
