@@ -1,3 +1,4 @@
+using DentalClinic.API.Middleware;
 using DentalClinic.Application;
 using DentalClinic.Persistence;
 
@@ -28,6 +29,7 @@ if (app.Environment.IsDevelopment() || true)
         c.RoutePrefix = string.Empty; // serve UI at app root
     });
 }
+app.UseCustomExceptionHandler();
 
 app.UseAuthorization();
 
