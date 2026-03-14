@@ -1,5 +1,6 @@
 ﻿using DentalClinic.API.DTOs.DentalOffices;
 using DentalClinic.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using DentalClinic.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DentalClinic.Application.Utilities;
@@ -54,6 +55,18 @@ namespace DentalClinic.API.Controllers
             var query = new GetDentalOfficesListQuery();
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateDentalOffice(Guid id, UpdateDentalOfficeDTO command)
+        {
+            var result = new UpdateDentalOfficeCommand
+            {
+                Id = id,
+                Name = command.Name
+            };
+            await _mediator.Send(result);
+            return Ok();
         }
     }
 }

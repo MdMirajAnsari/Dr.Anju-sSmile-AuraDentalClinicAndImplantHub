@@ -9,5 +9,6 @@ namespace DentalClinic.Application.Utilities
     public interface IMediator
     {
         Task<TResponse> Send<TResponse>(IRequest<TResponse> response); 
+        Task Send(IRequest response);
     }
 }
