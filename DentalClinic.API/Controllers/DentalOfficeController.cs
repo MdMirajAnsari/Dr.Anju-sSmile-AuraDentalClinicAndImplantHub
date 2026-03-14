@@ -1,6 +1,7 @@
 ﻿using DentalClinic.API.DTOs.DentalOffices;
 using DentalClinic.Application.Features.DentalOffices.Commands.CreateDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
+using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DentalClinic.Application.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,13 +39,21 @@ namespace DentalClinic.API.Controllers
 
         }
 
+        //[HttpGet]
+        //public async Task<ActionResult<List<DentalOfficeDetailDTO>>> GetDentalOffices()
+        //{
+        //    //var query = new GetDentalOfficesQuery(Id = );
+        //    //var result = await _mediator.Send(query);
+        //    //return Ok(result);
+        //    return Ok();
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<List<DentalOfficeDetailDTO>>> GetDentalOffices()
+        public async Task<ActionResult<List<DentalOfficesListDTO>>> GetDentalOfficesList()
         {
-            //var query = new GetDentalOfficesQuery(Id = );
-            //var result = await _mediator.Send(query);
-            //return Ok(result);
-            return Ok();
+            var query = new GetDentalOfficesListQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
     }
 }

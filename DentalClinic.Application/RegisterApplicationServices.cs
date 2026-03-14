@@ -1,5 +1,6 @@
 ﻿using DentalClinic.Application.Features.DentalOffices.Commands.CreateDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
+using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DentalClinic.Application.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,6 +18,7 @@ namespace DentalClinic.Application
             services.AddTransient<IMediator, SimpleMediator>();
             services.AddScoped<IRequestHandler<CreateDentalOfficeCommand, Guid>, CreateDentalOfficeCommandHandler>();
             services.AddScoped<IRequestHandler<GetDentalOfficeDetailQuery, DentalOfficeDetailDTO>, GetDentalOfficeDetailQueryHandler>();
+            services.AddScoped<IRequestHandler<GetDentalOfficesListQuery, List<DentalOfficesListDTO>>, GetDentalOfficesListQueryHandler>();
             return services;
         }
 
