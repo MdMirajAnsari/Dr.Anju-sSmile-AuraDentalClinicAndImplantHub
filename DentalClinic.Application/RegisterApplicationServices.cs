@@ -3,6 +3,7 @@ using DentalClinic.Application.Features.DentalOffices.Commands.DeleteDentalOffic
 using DentalClinic.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
+using DentalClinic.Application.Features.Patients.Commands.CreatePatient;
 using DentalClinic.Application.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,6 +20,7 @@ namespace DentalClinic.Application
         {
             services.AddTransient<IMediator, SimpleMediator>();
             services.AddScoped<IRequestHandler<CreateDentalOfficeCommand, Guid>, CreateDentalOfficeCommandHandler>();
+            services.AddScoped<IRequestHandler<CreatePatientCommand, Guid>, CreatePatientCommandHandler>();
             services.AddScoped<IRequestHandler<GetDentalOfficeDetailQuery, DentalOfficeDetailDTO>, GetDentalOfficeDetailQueryHandler>();
             services.AddScoped<IRequestHandler<GetDentalOfficesListQuery, List<DentalOfficesListDTO>>, GetDentalOfficesListQueryHandler>();
             services.AddScoped<IRequestHandler<UpdateDentalOfficeCommand>, UpdateDentalOfficeCommandHandler>();
