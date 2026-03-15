@@ -1,5 +1,6 @@
 ﻿using DentalClinic.API.DTOs.DentalOffices;
 using DentalClinic.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using DentalClinic.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
@@ -66,6 +67,14 @@ namespace DentalClinic.API.Controllers
                 Name = command.Name
             };
             await _mediator.Send(result);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteDentalOffice(Guid id)
+        {
+            var command = new DeleteDentalOfficeCommand { Id= id};
+            await _mediator.Send(command);
             return Ok();
         }
     }
