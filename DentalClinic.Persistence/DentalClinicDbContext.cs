@@ -27,5 +27,6 @@ namespace DentalClinic.Persistence
         }
 
         public DbSet<DentalOffice> DentalOffices { get; set; }
+        public DbSet<Patient> Patients { get; set; }
     }
 }

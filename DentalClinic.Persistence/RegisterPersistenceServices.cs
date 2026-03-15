@@ -26,6 +26,9 @@ namespace DentalClinic.Persistence
             });
 
             services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+
+
             services.AddScoped<IUnitOfWork, UnitOfWorkEFCore>();
 
             return services;

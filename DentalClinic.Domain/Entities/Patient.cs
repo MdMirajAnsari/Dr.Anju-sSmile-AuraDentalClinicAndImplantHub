@@ -13,6 +13,8 @@ namespace DentalClinic.Domain.Entities
         public string Name { get; private set; } = null!;
         public Email Email { get; private set; } = null!;
 
+        private Patient() { }
+
         public Patient(string name, Email email) 
         {
             if (string.IsNullOrWhiteSpace(name))
