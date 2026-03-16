@@ -1,4 +1,5 @@
-﻿using DentalClinic.Domain.Entities;
+﻿using DentalClinic.Application.Features.Patients.Queries.GetPatientsList;
+using DentalClinic.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace DentalClinic.Application.Contracts.Repositories
 {
     public interface IPatientRepository : IRepository<Patient>
     {
-
+        Task<IEnumerable<Patient>> GetFiltered(PatientsFilterDTO patientsFilterDTO);
     }
 }

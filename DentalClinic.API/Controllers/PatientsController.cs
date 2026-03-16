@@ -1,4 +1,5 @@
 ﻿using DentalClinic.API.DTOs.Patients;
+using DentalClinic.API.Utilities;
 using DentalClinic.Application.Features.Patients.Commands.CreatePatient;
 using DentalClinic.Application.Features.Patients.Queries.GetPatientsList;
 using DentalClinic.Application.Utilities;
@@ -29,11 +30,11 @@ namespace DentalClinic.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PatientListDTO>>> Get()
+        public async Task<ActionResult<List<PatientListDTO>>> Get([FromQuery] GetPatientsListQuery query)
         {
-            var query = new GetPatientsListQuery();
-            var patients = await _mediator.Send(query);
-            return Ok(patients);
+            var result = await _mediator.Send(query);
+            HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
+            return result.Elements;
         }
     }
 }

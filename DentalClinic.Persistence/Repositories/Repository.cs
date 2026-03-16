@@ -37,6 +37,11 @@ namespace DentalClinic.Persistence.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public async Task<int> GetTotalAmountOfRecords()
+        {
+            return await _context.Set<T>().CountAsync();
+        }
+
         public Task UpdateAsync(T entity)
         {
             _context.Update(entity);
