@@ -1,6 +1,7 @@
 ﻿using DentalClinic.API.DTOs.Patients;
 using DentalClinic.API.Utilities;
 using DentalClinic.Application.Features.Patients.Commands.CreatePatient;
+using DentalClinic.Application.Features.Patients.Queries.GetPatientDetail;
 using DentalClinic.Application.Features.Patients.Queries.GetPatientsList;
 using DentalClinic.Application.Utilities;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,14 @@ namespace DentalClinic.API.Controllers
             var result = await _mediator.Send(query);
             HttpContext.InsertPaginationInformationInHeader(result.TotalAmountOfRecords);
             return result.Elements;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PatientDetailDTO>> Get(Guid id)
+        {
+            var query = new GetPatientDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return result;
         }
     }
 }
