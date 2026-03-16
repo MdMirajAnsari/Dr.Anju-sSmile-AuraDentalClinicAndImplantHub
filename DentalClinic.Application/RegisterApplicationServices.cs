@@ -4,6 +4,7 @@ using DentalClinic.Application.Features.DentalOffices.Commands.UpdateDentalOffic
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using DentalClinic.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using DentalClinic.Application.Features.Patients.Commands.CreatePatient;
+using DentalClinic.Application.Features.Patients.Queries.GetPatientsList;
 using DentalClinic.Application.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,6 +26,7 @@ namespace DentalClinic.Application
             services.AddScoped<IRequestHandler<GetDentalOfficesListQuery, List<DentalOfficesListDTO>>, GetDentalOfficesListQueryHandler>();
             services.AddScoped<IRequestHandler<UpdateDentalOfficeCommand>, UpdateDentalOfficeCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteDentalOfficeCommand>, DeleteDentalOfficeCommandHandler>();
+            services.AddScoped<IRequestHandler<GetPatientsListQuery, List<PatientListDTO>>, GetPatientsListQueryHandler>();
 
 
             return services;
