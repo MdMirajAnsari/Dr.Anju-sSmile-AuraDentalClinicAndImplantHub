@@ -15,14 +15,13 @@ namespace DentalClinic.Domain.Entities
 
         private Patient() { }
 
-        public Patient(string name, Email email) 
+        public Patient(string name, Email email)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new BusinessRuleException($"The {nameof(Name)} field is required.");
-            }
+            EnforceNameBusinessRules(name);
+            EnforceEmailBusinessRules(email);
 
-           if(email == null)
+
+            if (email == null)
             {
                 throw new BusinessRuleException($"The {nameof(Email)} field is required.");
             }
@@ -30,6 +29,32 @@ namespace DentalClinic.Domain.Entities
             Name = name;
             Email = email;
             Id = Guid.CreateVersion7();
+        }
+
+        public void UpdateName(string name)
+        {
+            EnforceNameBusinessRules(name);
+        }
+
+        private void EnforceNameBusinessRules(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new BusinessRuleException($"The {nameof(Name)} field is required.");
+            }
+        }
+        public void UpdateEmail(Email email)
+        {
+            EnforceEmailBusinessRules(email);
+            Email = email;
+        }
+
+        private void EnforceEmailBusinessRules(Email email)
+        {
+            if (email == null)
+            {
+                throw new BusinessRuleException($"The {nameof(Email)} field is required.");
+            }
         }
     }
 }
