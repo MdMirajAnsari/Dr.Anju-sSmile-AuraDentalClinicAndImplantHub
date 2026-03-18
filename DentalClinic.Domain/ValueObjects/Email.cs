@@ -1,10 +1,12 @@
 ﻿using DentalClinic.Domain.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DentalClinic.Domain.ValueObjects
 {
+    [Owned]
     public record Email
     {
         public string Value { get; } = null!;

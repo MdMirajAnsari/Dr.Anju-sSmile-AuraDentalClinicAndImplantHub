@@ -10,6 +10,8 @@ namespace DentalClinic.Domain.Entities
         public Guid Id { get; private set; }
         public string Name { get; private set; } = null!;
 
+        private DentalOffice() { }
+
         public DentalOffice(string name)
         {
             EnforceNameBusinessRules(name);
