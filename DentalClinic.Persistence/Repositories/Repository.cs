@@ -15,16 +15,18 @@ namespace DentalClinic.Persistence.Repositories
         {
             _context = context;
         }
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            _context.Add(entity);
-            return Task.FromResult(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            _context.Remove(id);
-            return Task.CompletedTask;
+            var entity = await _context.Set<T>().FindAsync(id);
+            if (entity == null)
+                return;
+
+            _context.Remove(entity);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -45,7 +47,7 @@ namespace DentalClinic.Persistence.Repositories
         public Task UpdateAsync(T entity)
         {
             _context.Update(entity);
-            return Task.FromResult(entity);
+            return Task.CompletedTask;
         }
     }
 }

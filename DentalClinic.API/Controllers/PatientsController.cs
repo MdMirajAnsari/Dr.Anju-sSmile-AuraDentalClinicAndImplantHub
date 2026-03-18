@@ -1,6 +1,7 @@
 ﻿using DentalClinic.API.DTOs.Patients;
 using DentalClinic.API.Utilities;
 using DentalClinic.Application.Features.Patients.Commands.CreatePatient;
+using DentalClinic.Application.Features.Patients.Commands.DeletePatient;
 using DentalClinic.Application.Features.Patients.Commands.UpdatePatient;
 using DentalClinic.Application.Features.Patients.Queries.GetPatientDetail;
 using DentalClinic.Application.Features.Patients.Queries.GetPatientsList;
@@ -50,8 +51,16 @@ namespace DentalClinic.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(Guid id, UpdatePatientDTO updatePatientDTO)
         {
-           
+
             var command = new UpdatePatientCommand { Id = id, Name = updatePatientDTO.Name, Email = updatePatientDTO.Email };
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var command = new DeletePatientCommand { Id = id };
             await _mediator.Send(command);
             return Ok();
         }

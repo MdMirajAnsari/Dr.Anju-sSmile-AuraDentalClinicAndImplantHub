@@ -9,9 +9,9 @@ namespace DentalClinic.Domain.Entities
 {
     public class Patient
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; } = null!;
-        public Email Email { get; private set; } = null!;
+        public Guid Id { get;  set; }
+        public string Name { get;  set; } = null!;
+        public Email Email { get; set; } = null!;
 
         private Patient() { }
 
