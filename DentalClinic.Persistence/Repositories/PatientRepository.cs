@@ -22,7 +22,19 @@ namespace DentalClinic.Persistence.Repositories
 
         public async Task<IEnumerable<Patient>> GetFiltered(PatientsFilterDTO patientsFilterDTO)
         {
-            return await _context.Patients.OrderBy(_=>_.Name)
+            var query = _context.Patients.AsQueryable();
+
+            if(!string.IsNullOrEmpty(patientsFilterDTO.Name))
+            {
+                query = query.Where(_ => _.Name.Contains(patientsFilterDTO.Name));
+            }
+
+            if(!string.IsNullOrEmpty(patientsFilterDTO.Email))
+            {
+                query = query.Where(_ => _.Email.Value.Contains(patientsFilterDTO.Email));
+            }
+
+            return await query.OrderBy(_=>_.Name)
                 .Paginate(patientsFilterDTO.Page, patientsFilterDTO.RecordsPerPage)
                 .ToListAsync();
         }
