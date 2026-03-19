@@ -19,6 +19,15 @@ namespace DentalClinic.Persistence.Repositories
             _context = context;
         }
 
+        public Task<Appointment> GetById(Guid id)
+        {
+            return _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Dentist)
+                .Include(a => a.DentalOffice)
+                .FirstOrDefaultAsync(a => a.Id == id)!;
+        }
+
         public async Task<bool> OverlapExists(Guid dentistId, DateTime startDate, DateTime endDate)
         {
             return await _context.Appointments.Where(a =>
