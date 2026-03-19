@@ -9,6 +9,6 @@ namespace DentalClinic.Application.Contracts.Repositories
 {
     public interface IAppointmentRepository :IRepository<Appointment>
     {
-
+        Task<bool> OverlapExists(Guid dentistId, DateTime startDate, DateTime endDate);
     }
 }
