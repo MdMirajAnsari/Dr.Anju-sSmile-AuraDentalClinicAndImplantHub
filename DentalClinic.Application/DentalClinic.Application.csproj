@@ -14,4 +14,8 @@
     <ProjectReference Include="..\DentalClinic.Domain\DentalClinic.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Appointments\Command\CompleteAppointment\" />
+  </ItemGroup>
+
 </Project>

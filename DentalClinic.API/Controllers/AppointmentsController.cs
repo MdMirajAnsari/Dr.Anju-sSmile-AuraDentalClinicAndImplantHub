@@ -1,6 +1,7 @@
 ﻿using DentalClinic.API.DTOs.Appointments;
 using DentalClinic.Application.Features.Appointments.Command.CreateAppointment;
 using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentDetail;
+using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentsList;
 using DentalClinic.Application.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,14 @@ namespace DentalClinic.API.Controllers
             if (result == null)
                 return NotFound();
             return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAppointments([FromQuery] GetAppointmentsListQuery getAppointmentsListQuery)
+        {
+            return await _mediator.Send(getAppointmentsListQuery) is List<AppointmentsListDTO> appointments
+                ? Ok(appointments)
+                : NotFound();
         }
 
         [HttpPost]

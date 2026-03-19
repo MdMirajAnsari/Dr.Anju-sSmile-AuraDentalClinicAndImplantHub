@@ -1,4 +1,5 @@
-﻿using DentalClinic.Domain.Entities;
+﻿using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentsList;
+using DentalClinic.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DentalClinic.Application.Contracts.Repositories
     {
         Task<bool> OverlapExists(Guid dentistId, DateTime startDate, DateTime endDate);
         new Task<Appointment> GetById(Guid id);
+        Task<IEnumerable<Appointment>> GetFiltered(AppointmentsFilterDTO appointmentsFilterDTO);
     }
 }
