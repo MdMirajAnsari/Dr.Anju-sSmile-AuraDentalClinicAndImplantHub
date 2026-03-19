@@ -1,4 +1,5 @@
 ﻿using DentalClinic.API.DTOs.Appointments;
+using DentalClinic.Application.Features.Appointments.Command.CompleteAppointment;
 using DentalClinic.Application.Features.Appointments.Command.CreateAppointment;
 using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentDetail;
 using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentsList;
@@ -50,6 +51,14 @@ namespace DentalClinic.API.Controllers
             };
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpPost("{id}/complete")]
+        public async Task<IActionResult> CompleteAppointment(Guid id)
+        {
+            var command = new CompleteAppointmentCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }

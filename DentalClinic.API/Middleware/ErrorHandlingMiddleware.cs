@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DentalClinic.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,6 +68,12 @@ namespace DentalClinic.API.Middleware
                     context.Response.StatusCode = 501;
                     errorResponse = new { Message = "Not implemented.", Details = ex.Message };
                     break;
+
+                case BusinessRuleException:
+                    context.Response.StatusCode = 400;
+                    errorResponse = new { Message = "Business rule violation.", Details = ex.Message };
+                    break;
+
 
             }
             context.Response.WriteAsJsonAsync(errorResponse);
