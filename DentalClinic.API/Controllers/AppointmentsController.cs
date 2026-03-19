@@ -1,4 +1,5 @@
 ﻿using DentalClinic.API.DTOs.Appointments;
+using DentalClinic.Application.Features.Appointments.Command.CancelAppointment;
 using DentalClinic.Application.Features.Appointments.Command.CompleteAppointment;
 using DentalClinic.Application.Features.Appointments.Command.CreateAppointment;
 using DentalClinic.Application.Features.Appointments.Queries.GetAppointmentDetail;
@@ -57,6 +58,14 @@ namespace DentalClinic.API.Controllers
         public async Task<IActionResult> CompleteAppointment(Guid id)
         {
             var command = new CompleteAppointmentCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("{id}/cancel")]
+        public async Task<IActionResult> CancelAppointment(Guid id)
+        {
+            var command = new CancelAppointmentCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();
         }
