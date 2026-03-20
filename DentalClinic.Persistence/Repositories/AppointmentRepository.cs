@@ -52,6 +52,11 @@ namespace DentalClinic.Persistence.Repositories
                 queryable = queryable.Where(a => a.DentistId == appointmentsFilterDTO.DentistId);
             }
 
+            if(appointmentsFilterDTO.AppointmentStatus is not null)
+            {
+                queryable = queryable.Where(a => a.Status == appointmentsFilterDTO.AppointmentStatus);
+            }
+
             return await queryable.Where(a => a.TimeInterval.Start >= appointmentsFilterDTO.StartDate && a.TimeInterval.End <= appointmentsFilterDTO.EndDate)
                 .OrderBy(a => a.TimeInterval.Start)
                 .ToListAsync();

@@ -1,5 +1,7 @@
+using DentalClinic.API.Jobs;
 using DentalClinic.API.Middleware;
 using DentalClinic.Application;
+using DentalClinic.Infrastructure;
 using DentalClinic.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
+
+builder.Services.AddHostedService<AppointmentsReminderJob>();
 
 var app = builder.Build();
 

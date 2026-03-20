@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>6ad4e7ff-0d73-4065-b2c2-a58e935356c3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DentalClinic.Application\DentalClinic.Application.csproj" />
+    <ProjectReference Include="..\DentalClinic.Infrastructure\DentalClinic.Infrastructure.csproj" />
     <ProjectReference Include="..\DentalClinic.Persistence\DentalClinic.Persistence.csproj" />
   </ItemGroup>
 

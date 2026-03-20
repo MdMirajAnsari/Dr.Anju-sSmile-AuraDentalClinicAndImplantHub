@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentalClinic.Application.Features.Appointments.Queries.GetAppointmentsList
+namespace DentalClinic.Application.Contracts.Repositories.Models
 {
     public class AppointmentsFilterDTO
     {
