@@ -19,6 +19,7 @@
     <ProjectReference Include="..\DentalClinic.Application\DentalClinic.Application.csproj" />
     <ProjectReference Include="..\DentalClinic.Infrastructure\DentalClinic.Infrastructure.csproj" />
     <ProjectReference Include="..\DentalClinic.Persistence\DentalClinic.Persistence.csproj" />
+    <ProjectReference Include="..\DentalClinic.Security\DentalClinic.Security.csproj" />
   </ItemGroup>
 
 </Project>

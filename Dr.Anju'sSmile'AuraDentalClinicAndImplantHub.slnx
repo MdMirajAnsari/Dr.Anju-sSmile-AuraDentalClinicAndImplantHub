@@ -9,6 +9,7 @@
   <Folder Name="/Infrastructure/">
     <Project Path="DentalClinic.Infrastructure/DentalClinic.Infrastructure.csproj" Id="bbe09c80-fb07-4cfd-9b04-8c5608de84aa" />
     <Project Path="DentalClinic.Persistence/DentalClinic.Persistence.csproj" Id="65869f56-0a11-43c8-82b0-cc8c8f0389f9" />
+    <Project Path="DentalClinic.Security/DentalClinic.Security.csproj" Id="4d541a71-7f11-405c-bce3-42a37d8e3938" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="DentalClinic.Tests/DentalClinic.Tests.csproj" />

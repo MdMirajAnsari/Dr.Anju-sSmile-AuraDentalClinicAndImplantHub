@@ -3,6 +3,8 @@ using DentalClinic.API.Middleware;
 using DentalClinic.Application;
 using DentalClinic.Infrastructure;
 using DentalClinic.Persistence;
+using DentalClinic.Security;
+using DentalClinic.Security.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +17,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddSecurityServices();
 
 builder.Services.AddHostedService<AppointmentsReminderJob>();
 
 var app = builder.Build();
+
+
+app.MapIdentityApi<User>();
 
 // Configure the HTTP request pipeline.
 
